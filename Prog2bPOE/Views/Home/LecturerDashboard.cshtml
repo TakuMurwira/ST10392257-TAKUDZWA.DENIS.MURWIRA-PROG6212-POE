@@ -1,0 +1,48 @@
+﻿
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Lecturer Dashboard</h2>
+            <div class="text-center mb-4">
+                <a asp-page="/SubmitClaim" class="btn btn-success">Submit a New Claim</a>
+            </div>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Claim ID</th>
+                        <th>Date</th>
+                        <th>Hours Worked</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Prototype Data -->
+                    <tr>
+                        <td>001</td>
+                        <td>2024-09-01</td>
+                        <td>10</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <a asp-page="/ClaimDetails" class="btn btn-primary btn-sm">View</a>
+                            <a href="#" class="btn btn-secondary btn-sm">Upload Documents</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>2024-09-03</td>
+                        <td>8</td>
+                        <td><span class="badge bg-success">Approved</span></td>
+                        <td>
+                            <a asp-page="/ClaimDetails" class="btn btn-primary btn-sm">View</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{
+}
