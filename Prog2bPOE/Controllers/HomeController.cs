@@ -33,17 +33,22 @@ namespace Prog2bPOE.Controllers
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult SubmitClaim()
         {
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult LecturerDasboard()
         {
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult CoordinatorDashboard()
+        {
+            return View();
+        }
+
+        public IActionResult ClaimDetails()
         {
             return View();
         }
