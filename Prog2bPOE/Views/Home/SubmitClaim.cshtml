@@ -6,26 +6,34 @@
                     <h3>Submit a New Claim</h3>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form id="claimForm" method="post">
                         <div class="form-group">
+                            <label for="lecturerID">Lecturer ID</label>
+                            <input type="text" class="form-control" id="lecturerID" required>
+                        </div>
+                        <div class="form-group mt-3">
                             <label for="Date">Submission Date</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" id="Date" required>
                         </div>
                         <div class="form-group mt-3">
                             <label for="HoursWorked">Hours Worked</label>
-                            <input type="number" class="form-control" required>
+                            <input type="number" class="form-control" id="HoursWorked" required oninput="calculateTotal()">
                         </div>
                         <div class="form-group mt-3">
                             <label for="HourlyRate">Hourly Rate</label>
-                            <input type="text" class="form-control" readonly>
+                            <input type="number" class="form-control" id="HourlyRate" required oninput="calculateTotal()">
                         </div>
                         <div class="form-group mt-3">
                             <label>Total Claim Amount</label>
-                            <input type="text" class="form-control"  readonly>
+                            <input type="text" class="form-control" id="TotalClaimAmount" readonly>
                         </div>
-                        <div>
+                        <div class="form-group mt-3">
+                            <label for="AdditionalNotes">Additional Notes</label>
+                            <textarea class="form-control" id="AdditionalNotes" rows="3"></textarea>
+                        </div>
+                        <div class="form-group mt-3">
                             <label>Upload Supporting Documents</label><br />
-                            <input type="file" accept=".pdf, .docx"/>
+                            <input type="file" id="fileUpload" accept=".pdf, .docx" required>
                         </div>
                         <div class="form-group text-center mt-4">
                             <button type="submit" class="btn btn-primary">Submit Claim</button>
@@ -36,3 +44,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    function calculateTotal() {
+        const hoursWorked = document.getElementById("HoursWorked").value;
+        const hourlyRate = document.getElementById("HourlyRate").value;
+        const totalClaimAmount = document.getElementById("TotalClaimAmount");
+
+        if (hoursWorked && hourlyRate) {
+            totalClaimAmount.value = (hoursWorked * hourlyRate).toFixed(2);
+        } else {
+            totalClaimAmount.value = "";
+        }
+    }
+
+    document.getElementById('claimForm').addEventListener('submit', function (event) {
+        const fileInput = document.getElementById('fileUpload');
+        const fileSize = fileInput.files[0].size / 1024 / 1024; // Size in MB
+
+        if (fileSize > 2) {
+            alert("File size must be less than 2MB.");
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
