@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 namespace Prog2bPOE
 {
     public class Program
@@ -5,9 +8,13 @@ namespace Prog2bPOE
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<MyDatabaseContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MyDatabaseContext")));
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
 
             var app = builder.Build();
 
